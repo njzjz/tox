@@ -15,3 +15,4 @@ runs:
         --spec '${{ github.action_path }}'
         tox
         2>&1
+      shell: bash
