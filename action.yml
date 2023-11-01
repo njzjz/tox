@@ -1,0 +1,17 @@
+name: tox
+description: 'Installs and runs tox on the current runner'
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v4
+      id: python
+      with:
+        # pipx requires Python >=3.7
+        python-version: "3.7 - 3.12"
+        update-environment: false
+    - run: >
+        pipx run
+        --python '${{ steps.python.outputs.python-path }}'
+        --spec '${{ github.action_path }}'
+        tox
+        2>&1
